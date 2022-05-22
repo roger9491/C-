@@ -168,12 +168,27 @@ a++
 //     // char s[] = {'1','3','3'};
 //     // char s1[] = "1234";
 //     // const int a = 10;
-//     string name[10] = {"asdad"};
-//     for(int i=0; i <= 9; i++){
-//         cout << name[i];
+//     string name[] = {"asdad","asda"};
+//     for(int i=0; i <=19; i++){
+//         cout << name[i] << " " << i;
 //     }
+//     cout << sizeof(name);
 
 //     return 0;
+// }
+#include <iostream>
+// #include <string>
+ 
+// int main()
+// {
+//     // Initialize String Array
+//     std::string colour[4] = { "Blue", "Red",
+//                               "Orange", "Yellow" };
+ 
+//     // Print Strings
+//     for (int i = 0; i < 4; i++)
+//         std::cout << colour[i] << "\n";
+//     std::cout << sizeof(colour);
 // }
 
 /*
@@ -235,21 +250,21 @@ C++11 : nullptr
 
 */
 
-// #include <iostream>
-// using namespace std;
+#include <iostream>
+using namespace std;
 
-// int main()
-// {
+int main()
+{
 
-//     // char s[10];
-//     string s;
-//     cin >> s;
-//     for(int i=9; i>= 0; i--){
-//         cout << s[i];
-//     }
-//     // cout << s;
-//     return 0;
-// }
+    // char s[10];
+    string s;
+    cin >> s;
+    for(int i=9; i>= 0; i--){
+        cout << s[i];
+    }
+    // cout << s;
+    return 0;
+}
 
 /* 
 ex 
@@ -408,28 +423,73 @@ ex
 7
 */
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-int main()
-{
-    int n, ans = 0;
-    cin >> n;
+// int main()
+// {
+//     int n, ans = 0;
+//     cin >> n;
 
-    while (n != 1)
-    {
-        if (n % 2 == 0)
-        {
-            n /= 2;
-        }else
-        {
-            n = 3*n + 1;
-        }
+//     while (n != 1)
+//     {
+//         if (n % 2 == 0)
+//         {
+//             n /= 2;
+//         }else
+//         {
+//             n = 3*n + 1;
+//         }
         
         
-        ans += 1;
-    }
-    cout << ans ;
+//         ans += 1;
+//     }
+//     cout << ans ;
 
-    return 0;
-}
+//     return 0;
+// }
+
+
+// #include <iostream>
+// using namespace std;
+
+// int main()
+// {
+//     int a = 5;
+
+//     int *ptr;
+
+//     ptr = &a;
+
+//     cout << *ptr << "\n";
+
+//     *ptr = 10;
+
+//     cout << *ptr << "\n";
+//     cout << a;
+
+//     return 0;
+// }
+
+
+/*
+建立變數
+嘗試利用指標變數去更改它
+
+*/
+
+// #include <iostream> 
+// using namespace std;
+
+
+// int main() {
+//     int *p = new int;
+
+//     *p = 5;
+//     cout << *p << "\n";
+
+//     delete p;
+//     cout << *p << "\n";
+//     return 0;
+
+// }
