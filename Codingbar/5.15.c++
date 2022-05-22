@@ -50,10 +50,27 @@ ex
 
 /*
 
-建立一個 1 ~ 10整數的串列
+建立一個 1 ~ 10整數的陣列
 輸出總和
 
+
+
 */
+#include <iostream>
+
+using namespace std;
+
+int main(){
+
+    for (int i=1;i <= 10;i++){
+        // code
+    }
+
+    
+}
+
+
+
 
 // #include <iostream>
 // using namespace std;
@@ -73,7 +90,7 @@ ex
 /*
 
 印出 1 ~ 100
-能被2整除但不能被4整除 或是 可以被6整除 的數字
+(能被2整除但不能被3整除) 或是 (可以被9整除) 的數字
 
 */
 
@@ -472,6 +489,21 @@ pass by reference
 //         cout << -1;
 //     }
     
+
+//     return 0;
+// }
+
+
+// #include <iostream> 
+// #include <string>
+// #include <cmath> 
+// using namespace std;
+
+// int main() {
+
+// 	string s1 = "ab", s2 = "cd";
+//     // bool a1 = true, a2 = False;
+// 	cout << (true && false);
 
 //     return 0;
 // }
