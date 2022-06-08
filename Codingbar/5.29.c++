@@ -1,4 +1,35 @@
+// #include<iostream>
+// #include<ctime>
+// using namespace std;
 
+// struct a
+// {
+//     int a = 5;
+//     int b = 1;
+//     int c = 2;
+//     int d = 6;
+//     int f = 4;
+//     int e = 3;
+// };
+
+
+// int main(){
+
+//     int n, m;
+//     cin >> n >> m;
+//     struct a t[n];
+//     int temp;
+
+//     temp = t[0].e;
+//     t[0].e = t[0].d;
+//     for (size_t i = 0; i < n; i++)
+//     {
+//         cout << t[i].a << t[i].b;
+//     }
+    
+
+//     return 0;
+// }
 
 // #include<iostream>
 // #include<ctime>
