@@ -1,6 +1,50 @@
 /*
+輸入一個字串
+
+每一個字後面多加一個零
+存在新的變數
+印出來
+
+ex.
+apple
+
+a0p0p0l0e0
+
+
+s = ""
+s = s + "1"
+s => "1"
+
+s = s + "ap"
+s => "1ap"
+
+
+*/
+
+// #include<iostream>
+// using namespace std;
+
+// int main(){
+
+//     string s, ans = "";
+//     cin >> s;   //apple
+//     for (int i = 0; i < s.size(); i++)
+//     {
+//         ans = ans + s[i] + "0";
+//     }
+//     cout << ans;
+
+//     return 0;
+// }
+
+
+
+/*
     insert()
     實作
+
+    
+
 */
 
 // #include<iostream>
@@ -30,6 +74,16 @@
 // }
 
 /*
+    輸入原本字串
+    輸入尋找的字串
+
+    輸出索引值
+
+    ex.
+    apple
+    pl
+
+    2
 
     實作find
 */
