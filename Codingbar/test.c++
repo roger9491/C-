@@ -1,13 +1,18 @@
-#include <iostream>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 int main()
 {
-
-    char a[3];
-    // string name;
-    cin >> a ;
-    cout << a;
     
-    return 0;
+    int  n, k;
+    cin >> n >> k;
+    vector<long long> times[4];
+  
+    for (int i = 0; i < n; ++i)
+    {
+
+        times[i].push_back(4);
+    }
+
+    cout << times[0].size();
+    sort(times.begin(),times.end());
 }
