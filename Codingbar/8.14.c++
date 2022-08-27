@@ -191,17 +191,20 @@ priority_queue<int, vector<int>, generate<int>> pq
 /* 
 
 */
-#include<bits/stdc++.h>
-using namespace std;
-bool cmp(int a , int b){
-    if (a%2 != b%2) return b%2==1;
-    return b < a;
-}
-int main(){
-    ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
-    int n; cin >> n;
-    vector<int> a(n);
-    for(int i=0 ; i<n ; ++i) cin >> a[i];
-    sort(a.begin() , a.end() , cmp);
-	for(int i=0 ; i<n ; ++i) cout << a[i] << ' ' ;
-}
+// #include<bits/stdc++.h>
+
+// using namespace std;
+// bool cmp(int a , int b){
+//     if (a%2 != b%2) return b%2==1;
+//     return b < a;
+// }
+// int main(){
+//     // ios::sync_with_stdio(false),cin.tie(0),cout.tie(0);
+//     int n; cin >> n;
+//     vector<int> a(n);
+//     for(int i=0 ; i<n ; ++i) cin >> a[i];
+//     sort(a.begin() , a.end() , cmp);
+// 	for(int i=0 ; i<n ; ++i) cout << a[i] << ' ' ;
+// }
+
+/**/
