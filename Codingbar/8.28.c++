@@ -266,3 +266,61 @@ YES
 //     cout << ans;
 //     return 0;
 // }
+
+// #include<bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     int n; cin >> n;
+//     int a;
+//     multiset<set> mst;
+//     mst.insert(3);
+//     mst.insert(2);
+//     mst.insert(6);
+//     mst.insert(8);
+//     mst.insert(1);
+//     auto iterator = mst.begin();
+//     cout << *(++iterator);
+    
+//     return 0;
+// }
+
+#include"bits/stdc++.h"
+#define pb push_back
+#define int long long
+#define pii pair<int,int>
+#define all(x) (x).begin(),(x).end()
+#define sz(x) (int)(x).size()
+#define F first
+#define S second
+#define LINE cout<<"--------------------------\n";
+#define IOS ios::sync_with_stdio(false),cin.tie(0);
+using namespace std;
+const int maxn = 1e5+50;
+set<pii> s;
+int a[maxn] , ans , ansl , ansr , psum[maxn];
+pii pos[maxn];
+signed main(){
+	int n;cin >> n;
+	for(int i=1 ; i<=n ; ++i) cin >> a[i] , pos[i-1] = {a[i] , i};
+	for(int i=1 ; i<=n ; ++i) psum[i] = psum[i-1] + a[i];
+	sort(pos , pos+n);
+	s.insert({1 , n});
+	for(int i=0 ; i<n ; ++i){
+		int now = pos[i].S;
+		auto it = s.lower_bound({now , -1});
+		if(it == s.end() || it->F > now) --it; 
+		int l = it->F , r = it->S;
+		if( pos[i].F * (psum[r]-psum[l-1]) > ans) // get answer
+		{
+			ans = pos[i].F * (psum[r]-psum[l-1]);
+			ansl = l , ansr = r;
+		}
+		s.erase(it);
+		if(now != l) s.insert({l , now-1});
+		if(now != r) s.insert({now+1 , r});
+	}
+	cout << ans << '\n';
+	cout << ansl << ' ' << ansr << '\n';
+}
