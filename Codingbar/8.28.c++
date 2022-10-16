@@ -1,3 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    string n;
+    while(cin >> n){
+        string num = n;
+
+        int intn = stoi(n);
+
+        for(int i = 0; i < intn; i++){
+            cout << "n " << n << "\n";
+            cout << "intn " << intn << "\n";
+            cout << "22\n";
+            int countn = n[i];
+            if(countn % 2 == 0){
+                n[i] = countn+1;    // 有問題
+                for(int j = 0; j < i; j++){
+                    cout << i << " "<< j << "33\n";
+                    // n[j] = '1';
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+//     int c;
+//     string n = "1234";
+//     c = n[0];
+//     cout << c << "adsad\n";
+//     cout << n ;
+// }
+
+
 /*
 連續採購 暴力版
 
@@ -26,6 +67,37 @@
 //     }
 // }
 
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+//     int n, t;
+//     cin >> n >> t;
+//     vector<long long> v(n), ans;
+
+//     for(int i = 0; i < n; i++){
+//         cin >> v[i];
+//     }
+//     long long biggest, tmp = 0;
+//     for(int i = 0; i < n; i++){
+//         long long count = 0, tmp = 0;
+//         while(tmp < t){
+//             tmp += v[i+count];
+//             if(tmp <= t){
+//                 count += 1;
+//             }
+//             cout << count << "\n";
+//         }
+//         ans.push_back(count);
+//     }
+//     sort(ans.begin(), ans.end());
+//     cout << ans.back();
+
+//     // int ans = 0, count = 0;
+
+//     // ans = max(ans, count);
+// }
 /*
 優化
 
@@ -266,3 +338,34 @@ YES
 //     cout << ans;
 //     return 0;
 // }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n,m;
+    vector<int> w, bag;
+    cin >> n >> m;
+    int a;
+
+    for(int i = 0; i < n; i++){
+        cin >> a;
+        w.push_back(a);
+    }
+    for(int j = 0; j < m; j++){
+        cin >> a;
+        bag.push_back(a);
+    }
+    sort(w.begin(), w.end(), greater<int>());
+    sort(bag.begin(), bag.end(), greater<int>());
+    long long ans = 0, index = 0;
+    for(int k = 0; k < m; k++){
+        while(bag[k] < w[index] && index < n){
+            index += 1;
+        }
+        if (index == n) break;
+        ans += w[index];
+    }
+    cout << ans;
+}

@@ -169,3 +169,29 @@ L2-2-1 小心毒藥水
 //     cout << ans;
 
 // }
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    vector< pair<int, int>> vp;
+    pair<int, int> tmp;
+    for(int i = 0; i < n; i++){
+        cin >> tmp.first >> tmp.second;
+        vp.push_back(tmp);
+    }
+    sort(vp.begin(), vp.end());
+    int tf = vp[0].second, count = 0;
+    for(int j = 1; j < n; j++){
+        if(tf > vp[j].first){
+            count += 1;
+        }else{
+            tf = vp[j].second;
+        }
+    }
+    cout << count;
+}

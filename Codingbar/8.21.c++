@@ -1,4 +1,49 @@
 /*
+實作二分搜尋法
+
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int a[] = {1, 3, 9, 13, 27, 33, 48, 55, 100};
+
+    int target;
+    // cin >> target;
+
+    int l, r, mid;
+    l = 0;
+    r = 8;
+
+    // array
+    // auto it = lower_bound(a, a+9, 48);
+    // int index = it - a;
+    // cout << index ;
+
+    // vector
+    // vector v;
+    // auto it = lower_bound(v.begin(), v.end(), 48);
+    // int index = it - a;
+    // cout << index ;
+
+    // while (l <= r)
+    // {
+    //     mid = (l + r) / 2;
+    //     if(a[mid] == target){
+    //         cout << mid;
+    //         break;
+    //     }else if(a[mid] > target){
+    //         r = mid - 1;
+    //     }else{
+    //         l = mid + 1;
+    //     }
+
+    // }
+}
+
+
+/*
  L1-4-4 奇怪的問題
 
 8 2
@@ -56,6 +101,31 @@ upper_bound(begin, end, val)
 none
 2
 11
+
+
+二分搜尋法的細節
+ex 
+0   1   2   3   4   5
+1   4   8   10  15  16
+1. 目標存在於數列中, l r mid
+    1. mid == 目標的索引值, 造成l r != mid
+        假設目標是 8 mid == 2 l = 0, r = 5
+    2. l == r == mid == 目標的索引值
+        假設目標是 16 
+            (1) l = 0, r = 5, mid = 2
+            (2) l = 3, r = 5, mid = 4
+            (3) l = 5, r = 5, mid = 5
+                    break
+2. 目標不存在於數列中
+    (1) 前 < 索引值0
+    (2) 後 > 索引值最後一個
+    (3) 大小剛好是 a[0] ~ a[-1]
+        ex 目標:3    
+        (1) l = 0, r = 5, mid = 2
+        (2) l = 0, r = 1, mid = 0
+        (3) l = 1, r = 1, mid = 1
+        (4) l = 1, r = 0, mid = 1
+            break   r 剛好會處在小於目標的最大值
 
 long long
 https://blog.csdn.net/CV_Jason/article/details/85244813
