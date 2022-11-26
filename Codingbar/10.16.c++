@@ -1,4 +1,5 @@
 /*
+
 adjacency matrix
 鄰接矩陣    (二維陣列)  少用
     查詢 有沒路 O(1)
@@ -10,6 +11,8 @@ adjacency matrix
 3   0   0   1   1   0   0
 4   1   1   1   0   1   1
 5   1   1   0   0   1   1
+
+m[1][4]
 
 adjacency list
 鄰接串列
@@ -28,7 +31,7 @@ v[0] = {2,3};
 v[2] = {10};
 v[3] = {4,5};
 v[5] = {6};
-
+int a[100] = {0};
 map<int, vector<int>> mp;
 mp[0] = {2,3};
 */
@@ -47,7 +50,47 @@ a -> b
 3 4
 3 5
 5 6
+
+v[0].push_back(3)
+鄰接串列方式存
+bfs
+把遇到的節點印出來
+
+vector
 */
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    int n;
+    vector<int> v[10000];
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        int a, b;
+        cin >> a >> b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    queue<int> q;
+    int New[10000] = {0};   // 記錄找過的節點
+    q.push(0);
+    New[0] = 1;
+    while(q.size()){    // queue還有節點就持續的bfs
+        int num = q.front();
+        cout << num << "\n";
+           New[num] = 1;
+        q.pop();
+        for(int j = 0; j < v[num].size(); j++){
+            if(New[v[num][j]] == 1){
+                continue;
+            }
+            q.push(v[num][j]);
+
+        }
+        
+    }
+}
+
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -142,6 +185,54 @@ L1-6-1 白色區塊
 
 */
 
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int old[1000][1000];
+// int dir[][2] = {{1,0}, {0,1}, {-1,0}, {0,-1}};
+// int l,w;
+// char pict[1000][1000];
+
+// void bfs(int i, int j){
+//     old[i][j] = 1;
+//     queue<pair<int, int>> q;
+//     while(q.size()){
+//         int num = q.front().first;
+//         int num2 = q.front().second;
+//         q.pop();
+//         for(int k = 0; k < 4; k++){
+//             int a = num + dir[k][0];
+//             int b = num2 + dir[k][1];
+//             if((0 <= a && a <= l) && (0 <= b && b <= w)){
+//                 if(old[a][b] == 0){
+//                     if(pict[a][b] == 'W'){
+//                         q.push({a,b});
+//                         old[a][b] = 1;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// int main(){
+//     cin >> l >> w;
+//     for(int i = 0; i < l; i++){
+//         for(int j = 0; j < w; j++){
+//             cin >> pict[i][j];
+//         }
+//     }
+//     memset(old, 0, sizeof(old));
+//     for(int i = 0; i < l; i++){
+//         for(int j = 0; j < w; j++){
+//             if(pict[a][b] == 'W' && old[a][b] == 0){
+                
+//             }
+//         }
+//     }
+// }
+
 // #include<bits/stdc++.h>
 // using namespace std;
 // int record[1000][1000];
@@ -198,64 +289,3 @@ L1-6-1 白色區塊
 //     }
 // }
 
-// '''
-// 最短距離
-// 兩點之間的最短"距離"
-
-// '''
-
-// #include<bits/stdc++.h>
-// using namespace std;
-// const int maxn = 100050;
-// vector<int> v[maxn];
-// bool vis[maxn];
-// int ans[maxn];
-// int main(){
-//  	int n , m , S;
-//  	cin >> n >> m >> S;
-//  	for(int i=0 ; i<m ; ++i){
-//  		int a,b; cin >> a >> b;
-//  		v[a].push_back(b);
-//  		v[b].push_back(a);
-//  	}
-//  	//BFS
-//  	queue<int> q;
-//  	q.push(S);
-//     int dis = 0;
-//  	vis[S] = 1;
-//     int c;
-//  	while(q.size()){
-//         c = q.size();
-
-//         while (c--){
-//             int now = q.front();
-//             q.pop();
-//             ans[now] = dis;
-//             for(int i=0 ; i<v[now].size() ; ++i){
-//                 if(!vis[ v[now][i] ]){
-//                     vis[ v[now][i] ] = true;
-//                     q.push(v[now][i]);
-//                 }
-//             }
-//         }
-//         dis += 1;
-
-//  	}
-//  	for(int i=1 ; i<=n ; ++i) cout << ans[i] << ' ';
-// }
-
-// # bfs(0,0)
-// '''
-// (1) 走訪所有的點
-// (2) 判斷兩點之間有沒有路徑
-// (3) 判斷兩點之間最短距離
-// 缺點: 不好紀錄路徑
-// '''
-
-/*
-練習題
-
-闖關路線 bfs
-d094: Q-7-5. 闖關路線
-https://judge.tcirc.tw/ShowProblem?problemid=d094
- */
