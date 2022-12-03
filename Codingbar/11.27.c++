@@ -75,6 +75,71 @@ L1-6-3 最遠距離
 // #include <bits/stdc++.h>
 // using namespace std;
 
+// int a(int n){
+//     if(n == 1){
+//         return 1;
+//     }
+//     return a(n-1) + n;
+// }
+
+// int main(){
+//     cout << a(5);
+// }
+
+
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> v[10000];
+vector<int> road;
+int record[3001] = {0};
+int far = 0;
+int total = 0;
+void dfs(int n){
+    cout << n << "\n";
+    total  += 1;
+    if(v[n].size() == 1){
+
+        return;
+    }
+    far = max(far, total);
+    for(int i = 0; i < v[n].size(); i++){
+        if(record[v[n][i]] == 0){
+            record[v[n][i]] = 1;
+            dfs(v[n][i]);
+        }
+        total -= 1;
+    }
+}
+
+
+
+int main(){
+    memset(record, 0, sizeof(record));
+    int n, q;
+    cin >> n >> q;
+
+    int a, b;
+    for(int i = 0; i < n - 1; i++){
+        cin >> a >> b;
+        v[a].push_back(b);
+        v[b].push_back(a);
+    }
+    road.push_back(0);
+    for(int j = 0; j < q; j++){
+        int s;
+        cin >> s;
+        record[s] = 1;
+        total = 0;
+        dfs(s);
+        cout << far << "\n";
+        far = 0;
+    }
+}
+// memset(a, 0, sizeof(a));
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
 // vector<int> v[3000];
 // int record[3000];
 // int maxv;
