@@ -14,6 +14,66 @@
 
 */
 
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> v[100001];
+// vector<int> record;
+// int read[100001] = {0};
+// int ans[100001] = {0};
+
+// void dfs(int n){
+//     record.push_back(n);
+//     for(int i = 0; i < record.size(); i++){
+//         ans[record[i]] += 1;
+//     }
+//     // cout << "n: " << n << "\n";
+//     // for (int i = 1; i < 9; i++)
+//     // {
+//     //     cout << ans[i] << " ";
+//     // }
+//     // cout << "\n"; 
+//     for(int j = 0; j < v[n].size(); j++){
+//         if(read[v[n][j]] == 0){
+//             read[v[n][j]] = 1;
+//             dfs(v[n][j]);
+//             record.pop_back();
+//         }
+//     }
+// }
+
+
+
+// int main(){
+//     int n;
+//     cin >> n;
+//     int a,b;
+//     for(int i = 0; i < n-1; i++){
+//         cin >> a >> b;
+//         v[a].push_back(b);
+//         v[b].push_back(a);
+//     }
+//     read[1] = 1;
+//     dfs(1);
+//     for(int k = 1; k <= n; k++){
+//         cout << ans[k] << " ";
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // #include <bits/stdc++.h>
 // using namespace std;
 
@@ -230,41 +290,210 @@ f(n) = f(n-1) + f(n-2)
 暴力法 優化成 記憶化搜索
 */
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int record[1000000];
-int ans = 0;
-const int mod = 1e9+7;
-int ed;
-int dfs(int n)
-{
-    if (n == 0)
-    {
-        return 1;
-    }
-    else if (record[n] != -1)
-    {
-        return record[n];
-    }
+// int record[1000000];
+// int ans = 0;
+// const int mod = 1e9+7;
+// int ed;
+// int dfs(int n)
+// {
+//     if (n == 0)
+//     {
+//         return 1;
+//     }
+//     else if (record[n] != -1)
+//     {
+//         return record[n];
+//     }
 
-    long long tmp = 0;
-    for (int i = 1; i <= 3; i++)
-    {
-        if (n - i >= 0)
-        {
-            tmp = (tmp + dfs(n - i)) %1000000007;
-        }
-    }
-    record[n] = tmp;
-    return record[n];
-}
+//     long long tmp = 0;
+//     for (int i = 1; i <= 3; i++)
+//     {
+//         if (n - i >= 0)
+//         {
+//             tmp = (tmp + dfs(n - i)) %1000000007;
+//         }
+//     }
+//     record[n] = tmp;
+//     return record[n];
+// }
 
-int main()
-{
+// int main()
+// {
 
-    cin >> ed;
-    memset(record, -1, sizeof(record));
-    dfs(ed);
-    cout << record[ed];
-}
+//     cin >> ed;
+//     memset(record, -1, sizeof(record));
+//     dfs(ed);
+//     cout << record[ed];
+// }
+
+/* 
+
+
+DP Dynamic programming 動態規劃
+他是一種算法思想 常見的算法思想 : 分治 貪心 窮舉
+核心思想: 通過把原問題分解為相對簡單的子問題的方式求解複雜問題的方法。
+
+我們先來看 能用動態規劃解決問題的條件
+最佳子結構
+    每個階段的最優解是由之前的某個或某些狀態而來的
+重疊子問題
+    不同階段的最優解含有重複的之前狀態的最優解
+無後效性
+    當前的狀態是由之前的狀態的最優解得來，而不管從何而來。
+    最短路步數是無後效性的，但是最短路徑就有後效性
+    
+# 所以我們會發現用動態規劃解決的題目通常會用串列來記錄
+
+實作方式:
+    遞推
+    記憶化搜索
+
+回頭來看看之前寫的記憶化搜索，想想看如何轉成遞推?
+費式數列 遞推
+
+那回到小朋友走樓梯
+    如何用動態規劃的方式思考? 如何用動態規劃解決?
+    (1) 定義問題    這裡定義的問題 要確保保有最優子結構
+        dp[i]: 第i層的走法數量
+    (2) 狀態轉移    定義好問題就是快樂的找狀態轉移
+        dp[0] = 1 邊界
+        dp[1] = 1 邊界
+        dp[i] = dp[i-1] + dp[i-2]
+
+5 8
+0 1 2 3 4 5
+1 1 2 3    
+dp[2] = dp[1] + dp[0]
+dp[3] = dp[2] + dp[1]
+
+dp[i] = dp[i-1] + dp[i-2]
+
+*/
+
+
+/*
+01. L1-5-1 爬樓梯(I)
+記憶化搜索 優化成 遞推
+*/
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int record[1000000];
+// int ans = 0;
+// const int mod = 1e9+7;
+// int ed;
+// int dfs(int n)
+// {
+//     if (n == 0)
+//     {
+//         return 1;
+//     }
+//     else if (record[n] != -1)
+//     {
+//         return record[n];
+//     }
+
+//     long long tmp = 0;
+//     for (int i = 1; i <= 3; i++)
+//     {
+//         if (n - i >= 0)
+//         {
+//             tmp = (tmp + dfs(n - i)) %1000000007;
+//         }
+//     }
+//     record[n] = tmp;
+//     return record[n];
+// }
+
+// int main()
+// {
+
+//     cin >> ed;
+//     memset(record, 0, sizeof(record));
+    
+//     record[0] = 1;
+//     for (int i = 0; i <= ed; i++)
+//     {
+//         for (int j = 1; j <= 3; j++)
+//         {
+//             if(i - j >= 0){
+//                 record[i] = (record[i] + record[i-j]) %1000000007;
+//             }
+//         }
+        
+//         // for (int i = 0; i <= ed; i++)
+//         // {
+//         //     cout << record[i] << " ";
+//         // }
+//         // cout << "\n";
+        
+//     }
+    
+
+//     cout << record[ed];
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+02. L1-5-3 爬樓梯(II)
+
+*/
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int record[1000000];
+// int ans = 0;
+// const int mod = 1e9+7;
+// int ed, le;
+// int dfs(int n)
+// {
+//     if (n == 0)
+//     {
+//         return 1;
+//     }
+//     else if (record[n] != -1)
+//     {
+//         return record[n];
+//     }
+
+//     long long tmp = 0;
+//     for (int i = 1; i <= le; i++)
+//     {
+//         if (n - i >= 0)
+//         {
+//             tmp = (tmp + dfs(n - i)) %1000000007;
+//         }
+//     }
+//     record[n] = tmp;
+//     return record[n];
+// }
+
+// int main()
+// {
+
+//     cin >> ed >> le;
+//     memset(record, -1, sizeof(record));
+//     dfs(ed);
+//     cout << record[ed];
+// }
+
+
+
